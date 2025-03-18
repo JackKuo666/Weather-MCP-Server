@@ -1,0 +1,48 @@
+# Smithery configuration file: https://smithery.ai/docs/config#smitheryyaml
+
+startCommand:
+  type: stdio
+  configSchema:
+    # JSON Schema defining the configuration options for the MCP.
+    type: object
+    properties:
+      nwsApiBase:
+        type: string
+        default: https://api.weather.gov
+        description: Base URL for NWS API
+      userAgent:
+        type: string
+        default: WeatherMCP/0.1
+        description: User-Agent header when making requests
+      logLevel:
+        type: string
+        default: INFO
+        description: Logging level
+      logFormat:
+        type: string
+        default: "%(asctime)s - %(levelname)s - %(message)s"
+        description: Logging format
+      requestTimeout:
+        type: string
+        default: "10"
+        description: Timeout for API requests in seconds
+  commandFunction:
+    # A JS function that produces the CLI command based on the given config to start the MCP on stdio.
+    |-
+    (config) => ({
+      command: '.venv/bin/python',
+      args: ['weather.py'],
+      env: {
+        NWS_API_BASE: config.nwsApiBase,
+        USER_AGENT: config.userAgent,
+        LOG_LEVEL: config.logLevel,
+        LOG_FORMAT: config.logFormat,
+        REQUEST_TIMEOUT: config.requestTimeout
+      }
+    })
+  exampleConfig:
+    nwsApiBase: https://api.weather.gov
+    userAgent: WeatherMCP/0.1
+    logLevel: INFO
+    logFormat: "%(asctime)s - %(levelname)s - %(message)s"
+    requestTimeout: "10"
