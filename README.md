@@ -1,4 +1,5 @@
 # Weather MCP Server
+[![smithery badge](https://smithery.ai/badge/@JackKuo666/weather-mcp-server)](https://smithery.ai/server/@JackKuo666/weather-mcp-server)
 
 This is a Model Context Protocol (MCP) server that provides weather information using the National Weather Service (NWS) API.
 
@@ -15,6 +16,15 @@ This is a Model Context Protocol (MCP) server that provides weather information 
 
 ## Installation
 
+### Installing via Smithery
+
+To install weather-mcp-server for Claude Desktop automatically via [Smithery](https://smithery.ai/server/@JackKuo666/weather-mcp-server):
+
+```bash
+npx -y @smithery/cli install @JackKuo666/weather-mcp-server --client claude
+```
+
+### Manual Installation
 1. Clone this repository
 2. Set up a virtual environment:
    ```
